@@ -30,8 +30,27 @@
         p.type = '';
         p.target = null;
         p.initialize = function(){};
+        p.events = args.events;
+        p.name = args.name;
 
         p.dispatch = function(){
+            if(!this.type || this.type === ''){
+                switch(_.size(this.events)){
+                    case 0:
+                        chaos.logger.error('there are no events associated to this event [' + this.toString() + ']');
+                        return;
+                        break;
+                    case 1:
+                        //default to the only event available
+                        this.type = chaos[this.name][getFirstPropertyName(this.events)];
+                        break;
+                    default:
+                        chaos.logger.error('you have multiple events associated to this event [' + this.toString() + '] but you did not specify which one you were looking to trigger. The events available are: ' + JSON.stringify(this.events));
+                        return;
+                        break;
+                }
+            }
+            
             chaos.EventDispatcher.dispatchEvent(this);
         };
 
@@ -58,4 +77,10 @@
     };
 
     Chaos.Core.Event = Event;
+
+    function getFirstPropertyName(obj){
+        for(var name in obj){
+            return name;
+        }
+    }
 }());

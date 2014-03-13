@@ -30,14 +30,14 @@
     * @method getInstance
     */
 	AppProperties.getInstance = function (){
-		
+
 		if(AppProperties.instance === null){
 			AppProperties.instance = new AppProperties();
 		}
-			
+
 		return AppProperties.instance;
 	};
-	
+
 	var p = AppProperties.prototype;
 
     /**
@@ -71,7 +71,7 @@
     */
     p.init = function(){
         this.serviceBaseURL =  chaos.ServiceLocator.getInstance().getServiceBaseUrl();
-        new chaos.AppConfigEvent(chaos.AppConfigEvent.CONFIG_READY).dispatch();
+        new chaos.AppConfigEvent({ type: chaos.AppConfigEvent.CONFIG_READY }).dispatch();
     };
 
     /**
