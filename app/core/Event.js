@@ -50,9 +50,12 @@
                         break;
                 }
             }
-            
+
             chaos.EventDispatcher.dispatchEvent(this);
         };
+
+        //alias
+        p.emit = p.dispatch;
 
         p.toString = function(){
             return this.name;
