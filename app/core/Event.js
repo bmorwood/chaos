@@ -12,11 +12,9 @@
 
         //TODO validate name exists - it's mandatory
 
-        chaos[args.name] = function(args){
-            args = args || {};
-
-            _.extend(this, args);
-        };
+        chaos[args.name] = new Function(
+            "return function " + args.name + "(args){ args = args || {}; _.extend(this, args); return this;}"
+        )();
 
         if(args.events){
             for(var name in args.events){
