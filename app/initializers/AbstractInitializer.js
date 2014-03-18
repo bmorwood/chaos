@@ -7,7 +7,7 @@
      * @namespace chaos.initializers
      */
 	var AbstractInitializer = function() {};
-	
+
 	var p = AbstractInitializer.prototype;
     /**
     * name of the initializer.
@@ -33,16 +33,16 @@
      * @default null
      */
 	p.faultEventName;
-	
+
 	p.$initialize = function ($name, $successEventName, $faultEventName){
 		this.name = $name;
 
 		this.successEventName = $successEventName||'';
 		this.faultEventName = $faultEventName||'';
-		
+
 		if (this.successEventName != '')
             chaos.EventDispatcher.getInstance().addEventListener(this.successEventName, this.success, this);
-			
+
 		if (this.faultEventName != '')
             chaos.EventDispatcher.getInstance().addEventListener(this.faultEventName, this.fault, this);
 	};
@@ -55,8 +55,8 @@
 	p.$execute = function (){
 		if (this.successEventName === '' && this.faultEventName === ''){
 			chaos.logger.info('Initializer: ' + this.name + ' executed.');
-			new chaos.InitializerSuccessEvent(this.name).dispatch();
-		}	
+			new chaos.InitializerSuccessEvent({ initializerName: this.name }).dispatch();
+		}
 	};
     /**
     * execute is used as a method placeholder to be overwriting when extended by another class / prototype, to call the super 'execute' use $execute.
@@ -75,7 +75,7 @@
 	p.$success = function($event){
 		this.removeCompletionListeners();
         chaos.logger.info('Initializer: ' + this.name + ' succeeded.');
-		new chaos.InitializerSuccessEvent(this.name).dispatch();
+		new chaos.InitializerSuccessEvent({ initializerName: this.name }).dispatch();
 	};
     /**
     * success is used as a method placeholder to be overwriting when extended by another class / prototype, to call the super 'success' use $success.
@@ -94,7 +94,7 @@
 	p.$fault = function($event) {
 		this.removeCompletionListeners();
         chaos.logger.error('Initializer: ' + this.name + ' failed.');
-		new chaos.InitializerFaultEvent(this.name).dispatch();
+		new chaos.InitializerFaultEvent({ initializerName: this.name }).dispatch();
 	};
     /**
     * fault is used as a method placeholder to be overwriting when extended by another class / prototype, to call the super 'fault' use $fault.
