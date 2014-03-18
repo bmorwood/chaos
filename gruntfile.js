@@ -30,8 +30,8 @@ module.exports = function(grunt) {
                     footer: '}(window));'
                 },
                 src: [
-                    'vendor/jquery.js',
-                    'vendor/**/*.js',
+                    'vendors/jquery.js',
+                    'vendors/**/*.js',
                     'app/index.js',
                     'app/core/Chaos.js',
                     'app/core/*.js',
