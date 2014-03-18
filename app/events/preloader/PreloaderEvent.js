@@ -9,7 +9,7 @@
      * @namespace chaos.events.preloader
      * @extends chaos.AbstractEvent
      */
-     
+
     Chaos.Core.Event.register({
         name: 'PreloaderEvent',
         events: {
