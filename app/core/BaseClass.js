@@ -2,7 +2,13 @@
     'use strict';
      var BaseClass = function(args){
          args = args || {};
-         _.extend(this, args);
+
+         //todo: remove
+         //_.extend(this, args);
+
+         for (var prop in args) {
+             this[prop] = args[prop];
+         }
      };
 
      BaseClass.create = function(args){
@@ -11,7 +17,7 @@
                  Base.instance = this;
                  this.initialize();
              }else{
-                 chaos.logger.error('You should not call the constructor for ' + this.toString() + ' directly. It is a singleton, so you should use `getInstance()`.');
+                 Chaos.NS.logger.error('You should not call the constructor for ' + this.toString() + ' directly. It is a singleton, so you should use `getInstance()`.');
              }
          };
 
@@ -38,7 +44,7 @@
              return this.name;
          };
 
-         chaos[args.name] = Base; //for namespace template
+         Chaos.NS[args.name] = Base; //for namespace template
 
          return p;
      };

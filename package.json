@@ -1,5 +1,5 @@
 {
-  "name": "project",
+  "name": "chaos",
   "nameSpace": "chaos",
   "main": "project",
   "version": "0.0.0",
@@ -13,17 +13,11 @@
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-less": "~0.7.0",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-imagemin": "~0.3.0",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-handlebars": "~0.5.11",
-    "grunt-contrib-connect": "~0.5.0",
     "time-grunt": "~0.2.1",
     "load-grunt-tasks": "~0.2.0",
-    "grunt-open": "~0.2.2",
-    "connect-livereload": "~0.3.0",
     "grunt-contrib-yuidoc": "~0.5.0"
   }
 }

@@ -144,7 +144,9 @@
      * @return {Array} returns an 'Array' of classes that are assigned to an 'Event'.
      */
     EventDispatcher.getListenersForEvent = function($event){
-        return _.pluck(this.events[$event], 'context');
+
+        //todo: remove
+        //return _.pluck(this.events[$event], 'context');
     };
 
     Chaos.Core.EventDispatcher = EventDispatcher;
