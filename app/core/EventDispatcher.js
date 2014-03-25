@@ -145,8 +145,7 @@
      */
     EventDispatcher.getListenersForEvent = function($event){
 
-        //todo: remove
-        //return _.pluck(this.events[$event], 'context');
+        //return Chaos.utils.pluck(this.events[$event], 'context');
     };
 
     Chaos.Core.EventDispatcher = EventDispatcher;

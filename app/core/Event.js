@@ -4,16 +4,17 @@
     var Event = function(args){
         args = args || {};
 
-        _.extend(this, args);
+        Chaos.Utils.extend(this, args);
     };
 
     Event.register = function(args){
+
         args = args || {};
 
         //TODO validate name exists - it's mandatory
 
         Chaos.NS[args.name] = new Function(
-            "return function " + args.name + "(args){ args = args || {}; _.extend(this, args); return this;}"
+            "return function " + args.name + "(args){ args = args || {}; Chaos.Utils.extend(this, args); return this;}"
         )();
 
         if(args.events){
@@ -40,7 +41,7 @@
                         break;
                     case 1:
                         //default to the only event available
-                        this.type = chaos[this.name][getFirstPropertyName(this.events)];
+                        this.type = Chaos.NS[this.name][getFirstPropertyName(this.events)];
                         break;
                     default:
                         Chaos.NS.logger.error('you have multiple events associated to this event [' + this.toString() + '] but you did not specify which one you were looking to trigger. The events available are: ' + JSON.stringify(this.events));

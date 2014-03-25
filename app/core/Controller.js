@@ -14,7 +14,7 @@
 
         p.addCommand = function ($eventName, $command){
             if(!AbstractController.commands[$eventName]){
-                chaos.EventDispatcher.getInstance().addEventListener($eventName, AbstractController.handleEvent, this);
+                Chaos.Core.EventDispatcher.getInstance().addEventListener($eventName, AbstractController.handleEvent, this);
                 Controller.commands[$eventName] = [];
                 Controller.commands[$eventName].push({event:$eventName, command:$command});
             }else{

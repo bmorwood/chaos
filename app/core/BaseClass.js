@@ -3,8 +3,7 @@
      var BaseClass = function(args){
          args = args || {};
 
-         //todo: remove
-         //_.extend(this, args);
+         //todo: look into cloning of objects
 
          for (var prop in args) {
              this[prop] = args[prop];

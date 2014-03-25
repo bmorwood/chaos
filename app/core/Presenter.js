@@ -18,7 +18,8 @@
             if(this.modelBound){
                 Chaos.NS.ModelBinder.update(model, this.model);
             }else{
-                this.model = Chaos.NS.ModelBinder.bind(model);
+                //this.model = Chaos.NS.ModelBinder.bind(model);
+                this.model = Chaos.Core.KOModelBinder.bind(model);
                 this.modelBound = true;
             }
         };
@@ -30,7 +31,8 @@
             src.append(this.elm);
 
             this.container = $('#' + this.id);
-            Chaos.NS.ModelBinder.render(this, this.container[0]);
+            //Chaos.NS.ModelBinder.render(this, this.container[0]);
+            Chaos.Core.KOModelBinder.render(this, this.container[0]);
             this.rendered();
         };
 

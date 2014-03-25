@@ -22,6 +22,7 @@ module.exports = function(grunt) {
                 src: [
                     'app/core/Chaos.js',
                     'app/core/*.js',
+                    'app/utils/*.js'
                 ],
                 dest: '<%= pkg.buildPath %>js/<%= pkg.name %>.min.js'
             }
