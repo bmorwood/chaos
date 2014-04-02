@@ -10,9 +10,7 @@
      * @namespace chaos.events
      */
 
-    var EventDispatcher = Chaos.Core.BaseClass.create({
-        name: 'EventDispatcher'
-    });
+    var EventDispatcher = Chaos.Singleton.extend({name: 'EventDispatcher'});
 
     EventDispatcher.target = null;
     EventDispatcher.events = [];
@@ -148,8 +146,6 @@
         //return Chaos.utils.pluck(this.events[$event], 'context');
     };
 
-    Chaos.Core.EventDispatcher = EventDispatcher;
-
     //alias
-    Chaos.Core.Emitter = EventDispatcher;
+    Chaos.Emitter = Chaos.EventDispatcher = EventDispatcher;
 }());

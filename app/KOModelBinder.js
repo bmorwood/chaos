@@ -1,7 +1,7 @@
 (function(){
     'use strict';
 
-    Chaos.Core.KOModelBinder = {
+    Chaos.KOModelBinder = {
         bind: function(obj){
             return ko.mapping.fromJS(obj);
         },

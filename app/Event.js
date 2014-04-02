@@ -20,7 +20,7 @@
         if(args.events){
             for(var name in args.events){
                 if(args.events[name] === true){
-                    Chaos.NS[args.name][name] = 'chaos.' + args.name.toLowerCase() + '::' + name;
+                    Chaos.NS[args.name][name] = Chaos.NS + '.' + args.name.toLowerCase() + '::' + name;
                 }
             }
         }
@@ -41,7 +41,7 @@
                         break;
                     case 1:
                         //default to the only event available
-                        this.type = Chaos.NS[this.name][getFirstPropertyName(this.events)];
+                        this.type = Chaos.NS[this.name][this.getFirstPropertyName(this.events)];
                         break;
                     default:
                         Chaos.NS.logger.error('you have multiple events associated to this event [' + this.toString() + '] but you did not specify which one you were looking to trigger. The events available are: ' + JSON.stringify(this.events));
@@ -50,7 +50,7 @@
                 }
             }
 
-            Chaos.Core.EventDispatcher.dispatchEvent(this);
+            Chaos.EventDispatcher.dispatchEvent(this);
         };
 
         //alias
@@ -58,6 +58,12 @@
 
         p.toString = function(){
             return this.name;
+        };
+
+        p.getFirstPropertyName = function(obj){
+            for(var name in obj){
+                return name;
+            }
         };
 
         return Chaos.NS[args.name];
@@ -71,18 +77,19 @@
     p.initialize = function(){};
 
     p.dispatch = function () {
-        Chaos.Core.EventDispatcher.dispatchEvent(this);
+        Chaos.EventDispatcher.dispatchEvent(this);
     };
 
     p.toString = function(){
         return this.name;
     };
 
-    Chaos.Core.Event = Event;
-
-    function getFirstPropertyName(obj){
+    p.getFirstPropertyName = function(obj){
         for(var name in obj){
             return name;
         }
-    }
+    };
+
+    Chaos.Event = Event;
+
 }());

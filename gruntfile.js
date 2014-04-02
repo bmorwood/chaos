@@ -20,9 +20,11 @@ module.exports = function(grunt) {
         concat:{
             core:{
                 src: [
-                    'app/core/Chaos.js',
-                    'app/core/*.js',
-                    'app/utils/*.js'
+                    'app/Chaos.js',
+                    'app/utils/*.js',
+                    'app/BaseClass.js',
+                    'app/Singleton.js',
+                    'app/*.js'
                 ],
                 dest: '<%= pkg.buildPath %>js/<%= pkg.name %>.min.js'
             }
