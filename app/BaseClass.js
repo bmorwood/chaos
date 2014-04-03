@@ -4,7 +4,7 @@
 
     BaseClass.extend = function($obj){
 
-        var p = this.prototype = new BaseClass();
+        var p = this.prototype = new this();
         p.constructor = BaseClass;
 
         $obj = $obj || {};

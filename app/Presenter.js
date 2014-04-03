@@ -1,20 +1,11 @@
 (function(){
     'use strict';
 
-    var Presenter = function(args){
-        args = args || {};
-        args.model = args.model || {};
-        Chaos.Utils.extend(this, args);
-
-        var p = Presenter.prototype = Chaos.BaseClass.extend(args);
-        p.id = '';
-        p.container = '';
-        p.modelBound = false;
-
-        p.rendered = function(){};
-        p.initialize = function(){};
-
-        p.setModel = function(model){
+    var Presenter = Chaos.Singleton.extend({
+        id: '',
+        container: '',
+        modalBound: false,
+        setModel: function() {
             if(this.modelBound){
                 Chaos.NS.ModelBinder.update(model, this.model);
             }else{
@@ -22,9 +13,8 @@
                 this.model = Chaos.KOModelBinder.bind(model);
                 this.modelBound = true;
             }
-        };
-
-        p.render = function(src){
+        },
+        render: function () {
             if(!this.modelBound)this.setModel(this.model);
 
             this.elm = ChaosTemplates[this.template];
@@ -34,12 +24,14 @@
             //Chaos.NS.ModelBinder.render(this, this.container[0]);
             Chaos.KOModelBinder.render(this, this.container[0]);
             this.rendered();
-        };
+        },
+        rendered: function() {
+            console.log('I am rendered... I should call add to stage now');
+        }
+    });
 
-        Chaos.NS[args.name] = p;
+    //alias
 
-        return p;
-    };
 
     Chaos.Presenter = Presenter;
 }());

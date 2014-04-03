@@ -9,7 +9,9 @@
     var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
 
     // The base Class implementation (does nothing)
-    this.Class = function(){};
+    var Class = function(){};
+
+    Class.create = function() { return new this()}
 
     // Create a new Class that inherits from this class
     Class.extend = function(prop) {
@@ -47,9 +49,11 @@
 
         // The dummy class constructor
         function Class() {
+
             // All construction is actually done in the init method
             if ( !initializing && this.init )
                 this.init.apply(this, arguments);
+
         }
 
         // Populate our constructed prototype object
@@ -63,5 +67,7 @@
 
         return Class;
     };
+
+    Chaos.Class = Class;
 })();
 

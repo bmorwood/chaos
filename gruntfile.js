@@ -22,6 +22,8 @@ module.exports = function(grunt) {
                 src: [
                     'app/Chaos.js',
                     'app/utils/*.js',
+                    'app/Class.js',
+                    'app/Base.js',
                     'app/BaseClass.js',
                     'app/Singleton.js',
                     'app/*.js'

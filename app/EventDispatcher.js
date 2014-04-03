@@ -10,7 +10,7 @@
      * @namespace chaos.events
      */
 
-    var EventDispatcher = Chaos.Singleton.extend({name: 'EventDispatcher'});
+    var EventDispatcher = Chaos.Singleton.extend({});
 
     EventDispatcher.target = null;
     EventDispatcher.events = [];
